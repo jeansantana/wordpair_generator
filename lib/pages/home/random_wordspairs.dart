@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:wordpair_generator/pages/favorites/favorites.dart';
 
 class RandomWords extends StatefulWidget {
   @override
@@ -66,28 +67,7 @@ class RandomWordsState extends State<RandomWords> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) {
-          final Iterable<ListTile> tiles = favoriteWordPairs.map((WordPair pair) {
-            return ListTile(
-              title: Text(
-                pair.asPascalCase, 
-                style: TextStyle(
-                  fontSize: 16.0,
-                ),
-              ),
-            );
-          });
-
-          final List<Widget> divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Favorite WordPairs'),
-            ),
-            body: ListView(children: divided),
-          );
+          return FavoritesScreen(favoriteWordPairs: favoriteWordPairs);
         }
       )
     );
